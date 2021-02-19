@@ -1,12 +1,11 @@
-BEGIN {FS="[\[ ]";}
+BEGIN {FS="[\[,]";}
+
+/pragma/ {
+	printf ("%%%%%s", uridecode($2));
+}
 
 {
-    # printf(">> %s %s %s %s\n", $0, uridecode($1), uridecode($2), uridecode($3));
-    if ($2 == "comment") {
-	printf("// %s\n", uridecode($3));
-    } else {
-	printf("%s",uridecode($3));
-    }
+	printf ("%s",uridecode($3));
 }
 
 
